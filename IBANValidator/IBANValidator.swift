@@ -82,6 +82,20 @@ public func IBANValidator(iban: String) -> Bool {
     return false
 }
 
+public func checkInvalidChars(iban: String) -> Bool {
+    
+    if iban.components(separatedBy: CharacterSet.alphanumerics).joined().count != 0 {
+        return false
+    }
+    
+    return true
+    
+}
+
+public func cleanIban(iban: String) -> String {
+    return iban.components(separatedBy: CharacterSet.alphanumerics.inverted).joined()
+}
+
 public func checkStartOfIBAN(iban: String) -> Bool {
 
     let charSet = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
@@ -114,5 +128,27 @@ public func checkCountryCode(iban: String) -> Bool {
     }
     
     return false
+    
+}
+
+public func checkLength(iban: String) -> Bool {
+    
+    if iban.count > 34 { return false }
+    
+    // Split country characters
+    let startChars = iban.prefix(2).uppercased()
+    
+    if let length = countries[startChars] {
+        
+        if iban.count == length {
+            return true
+        } else {
+            return false
+        }
+        
+    } else {
+        // Invalid country code, reject
+        return false
+    }
     
 }

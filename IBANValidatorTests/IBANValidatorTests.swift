@@ -17,6 +17,36 @@ class IBANValidatorTests: QuickSpec {
         
         describe("When coarse format checking") {
             
+            context("non-valid characters", {
+                
+                it("should clean out spaces", closure: {
+                    let IBANUnderTest = "DE12 3456 7890 1234 5678 90"
+                    let cleanedIban = "DE12345678901234567890"
+                    let result = cleanIban(iban: IBANUnderTest)
+                    expect(result).to(equal(cleanedIban))
+                })
+
+                it("should clean out dashes", closure: {
+                    let IBANUnderTest = "DE12-3456-7890-1234-5678-90"
+                    let cleanedIban = "DE12345678901234567890"
+                    let result = cleanIban(iban: IBANUnderTest)
+                    expect(result).to(equal(cleanedIban))
+                })
+
+                it("should reject invalid characters", closure: {
+                    let IBANUnderTest = "DE*123,456789🐶01234567890"
+                    let result = checkInvalidChars(iban: IBANUnderTest)
+                    expect(result).to(beFalse())
+                })
+
+                it("should pass valid characters", closure: {
+                    let IBANUnderTest = "DE12345678901234567890"
+                    let result = checkInvalidChars(iban: IBANUnderTest)
+                    expect(result).to(beTrue())
+                })
+
+            })
+            
             context("IBAN start characters", {
             
                 it("should reject an IBAN that starts with numbers", closure: {
@@ -25,8 +55,20 @@ class IBANValidatorTests: QuickSpec {
                     expect(result).to(beFalse())
                 })
 
-                it("should reject an IBAN that starts with a single letter", closure: {
+                it("should reject an IBAN that starts with a single uppercase letter", closure: {
                     let IBANUnderTest = "A12345678901234567890"
+                    let result = checkStartOfIBAN(iban: IBANUnderTest)
+                    expect(result).to(beFalse())
+                })
+
+                it("should reject an IBAN that starts with a single lowercase letter", closure: {
+                    let IBANUnderTest = "a12345678901234567890"
+                    let result = checkStartOfIBAN(iban: IBANUnderTest)
+                    expect(result).to(beFalse())
+                })
+
+                it("should reject an IBAN that starts with non-alpha characters", closure: {
+                    let IBANUnderTest = "🐶🐔12345678901234567890"
                     let result = checkStartOfIBAN(iban: IBANUnderTest)
                     expect(result).to(beFalse())
                 })
@@ -72,9 +114,38 @@ class IBANValidatorTests: QuickSpec {
                     let result = checkCountryCode(iban: IBANUnderTest)
                     expect(result).to(beTrue())
                 })
+                
             })
             
-            
+            describe("length", {
+                
+                it("should reject IBANs that have more than 34 characters", closure: {
+                    let IBANUnderTest = "DE345678901234567890123456789012345"
+                    let result = checkLength(iban: IBANUnderTest)
+                    expect(result).to(beFalse())
+                })
+                
+                it("should reject IBANs with invalid lengths", closure: {
+                    // DE = 22, BE = 16, MT = 31,
+                    let DE_ibanUnderTest = "DE345678901234567890123"
+                    let BE_ibanUnderTest = "BE345678901234567"
+                    let MT_ibanUnderTest = "MT345678901234567890123456789012"
+                    expect(checkLength(iban: DE_ibanUnderTest)).to(beFalse())
+                    expect(checkLength(iban: BE_ibanUnderTest)).to(beFalse())
+                    expect(checkLength(iban: MT_ibanUnderTest)).to(beFalse())
+                })
+
+                it("should pass IBANs with correct lengths", closure: {
+                    // DE = 22, BE = 16, MT = 31,
+                    let DE_ibanUnderTest = "DE34567890123456789012"
+                    let BE_ibanUnderTest = "BE34567890123456"
+                    let MT_ibanUnderTest = "MT34567890123456789012345678901"
+                    expect(checkLength(iban: DE_ibanUnderTest)).to(beTrue())
+                    expect(checkLength(iban: BE_ibanUnderTest)).to(beTrue())
+                    expect(checkLength(iban: MT_ibanUnderTest)).to(beTrue())
+                })
+
+            })
 
         }
         
