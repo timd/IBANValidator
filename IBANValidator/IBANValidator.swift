@@ -20,7 +20,7 @@ public enum ResultType<T, Error> {
     case success(T)
 }
 
-private let countries = [ "AL" : 28,
+let countries = [ "AL" : 28,
                   "AD" : 24,
                   "AT" : 20,
                   "AZ" : 28,
