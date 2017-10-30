@@ -1,4 +1,4 @@
-    //
+//
 //  IBANValidator.swift
 //  IBANValidator
 //
@@ -8,7 +8,19 @@
 
 import Foundation
 
-let countries = [ "AL" : 28,
+public enum IBANValidationError: String, LocalizedError {
+    case invalidChecksum = "Invalid checksum"
+    case invalidCountryCode = "Invalid country code"
+    case invalidLength = "Invalid length"
+    case invalidCharacters = "Invalid characters"
+}
+
+public enum ResultType<T, Error> {
+    case failure(Error)
+    case success(T)
+}
+
+private let countries = [ "AL" : 28,
                   "AD" : 24,
                   "AT" : 20,
                   "AZ" : 28,
@@ -78,7 +90,7 @@ let countries = [ "AL" : 28,
                   "GB" : 22,
                   "VG" : 24 ]
 
-    let letters = [
+private let letters = [
     "A": 10,
     "B": 11,
     "C": 12,
@@ -106,22 +118,34 @@ let countries = [ "AL" : 28,
     "Y": 34,
     "Z": 35]
 
-    public func IBANValidator(iban: String) -> Bool {
+    public func IBANValidator(iban: String) throws -> Bool {
+        
+        // Check invalid chars
+        if !checkInvalidChars(iban: iban) { throw IBANValidationError.invalidCharacters }
         
         // Clean IBAN
         let cleanedIban = cleanIban(iban: iban)
         
-        // Check invalid chars
-        if !checkInvalidChars(iban: cleanedIban) { return false }
-        
         // Check length
-        if !checkLength(iban: cleanedIban) { return false }
+        do {
+            try _ = checkLength(iban: cleanedIban)
+        } catch let error as IBANValidationError {
+            
+            switch  error {
+            case .invalidCountryCode:
+                throw IBANValidationError.invalidCountryCode
+            default:
+                throw IBANValidationError.invalidLength
+            }
+        }
+        
+        //if !checkLength(iban: cleanedIban) { throw IBANValidationError.invalidLength }
         
         // Check start is valid
-        if !checkStartOfIBAN(iban: cleanedIban) { return false }
+        if !checkStartOfIBAN(iban: cleanedIban) { throw IBANValidationError.invalidCharacters }
         
         // Check country code
-        if !checkCountryCode(iban: cleanedIban) { return false }
+        if !checkCountryCode(iban: cleanedIban) { throw IBANValidationError.invalidCountryCode }
         
         // Isolate existing checksum
         let startChars = cleanedIban.prefix(4)
@@ -137,9 +161,9 @@ let countries = [ "AL" : 28,
         let calculatedChecksum = calculateChecksum(iban: nonAlphaIban)
         
         // Test that checksums match
-        if calculatedChecksum == existingChecksum { return true }
+        if calculatedChecksum != existingChecksum { throw IBANValidationError.invalidChecksum }
         
-        return false
+        return true
         
     }
     
@@ -148,7 +172,7 @@ let countries = [ "AL" : 28,
 
 
 
-public func checkInvalidChars(iban: String) -> Bool {
+internal func checkInvalidChars(iban: String) -> Bool {
     
     if iban.components(separatedBy: CharacterSet.alphanumerics).joined().count != 0 {
         return false
@@ -158,11 +182,11 @@ public func checkInvalidChars(iban: String) -> Bool {
     
 }
 
-public func cleanIban(iban: String) -> String {
+internal func cleanIban(iban: String) -> String {
     return iban.components(separatedBy: CharacterSet.alphanumerics.inverted).joined()
 }
 
-public func checkStartOfIBAN(iban: String) -> Bool {
+internal func checkStartOfIBAN(iban: String) -> Bool {
 
     let charSet = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
@@ -174,7 +198,7 @@ public func checkStartOfIBAN(iban: String) -> Bool {
 
 }
 
-public func checkCheckDigits(iban: String) -> Bool {
+internal func checkCheckDigits(iban: String) -> Bool {
     
     let charSet = CharacterSet(charactersIn: "0123456789")
     
@@ -185,7 +209,7 @@ public func checkCheckDigits(iban: String) -> Bool {
 
 }
 
-public func checkCountryCode(iban: String) -> Bool {
+internal func checkCountryCode(iban: String) -> Bool {
     
     let startChars = iban.prefix(2).uppercased()
 
@@ -197,9 +221,9 @@ public func checkCountryCode(iban: String) -> Bool {
     
 }
 
-public func checkLength(iban: String) -> Bool {
+internal func checkLength(iban: String) throws -> Bool {
     
-    if iban.count > 34 { return false }
+    if iban.count > 34 { throw IBANValidationError.invalidLength }
     
     // Split country characters
     let startChars = iban.prefix(2).uppercased()
@@ -209,19 +233,19 @@ public func checkLength(iban: String) -> Bool {
         if iban.count == length {
             return true
         } else {
-            return false
+            throw IBANValidationError.invalidLength
         }
         
     } else {
         // Invalid country code, reject
-        return false
+        throw IBANValidationError.invalidCountryCode
     }
     
 }
 
 // Rearrangement
 
-public func rearrange(iban: String) -> String {
+internal func rearrange(iban: String) -> String {
     
     let startIndex = iban.startIndex
     
@@ -239,7 +263,7 @@ public func rearrange(iban: String) -> String {
     
 }
     
-public func replaceAlphaChars(iban: String) -> String {
+internal func replaceAlphaChars(iban: String) -> String {
     
     let charSet = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     var updatedIban = iban
@@ -261,7 +285,7 @@ public func replaceAlphaChars(iban: String) -> String {
     
 }
 
-public func calculateChecksum(iban: String) -> String {
+internal func calculateChecksum(iban: String) -> String {
         
     let ibanNumber = BInt(iban)
         

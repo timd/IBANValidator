@@ -120,31 +120,43 @@ class IBANValidatorTests: QuickSpec {
             describe("length", {
                 
                 it("should reject IBANs that have more than 34 characters", closure: {
-                    let IBANUnderTest = "DE345678901234567890123456789012345"
-                    let result = checkLength(iban: IBANUnderTest)
-                    expect(result).to(beFalse())
+                    let ibanUnderTest = "DE345678901234567890123456789012345"
+                    expect { try checkLength(iban: ibanUnderTest) }.to(throwError { (error: Error) in
+                        expect(error).to(matchError(IBANValidationError.invalidLength))
+                    })
                 })
                 
-                it("should reject IBANs with invalid lengths", closure: {
-                    // DE = 22, BE = 16, MT = 31,
+                it("should reject IBANs that have more than 34 characters", closure: {
                     let DE_ibanUnderTest = "DE345678901234567890123"
                     let BE_ibanUnderTest = "BE345678901234567"
                     let MT_ibanUnderTest = "MT345678901234567890123456789012"
-                    expect(checkLength(iban: DE_ibanUnderTest)).to(beFalse())
-                    expect(checkLength(iban: BE_ibanUnderTest)).to(beFalse())
-                    expect(checkLength(iban: MT_ibanUnderTest)).to(beFalse())
+
+                    expect { try checkLength(iban: DE_ibanUnderTest) }.to(throwError { (error: Error) in
+                        expect(error).to(matchError(IBANValidationError.invalidLength))
+                    })
+
+                    expect { try checkLength(iban: BE_ibanUnderTest) }.to(throwError { (error: Error) in
+                        expect(error).to(matchError(IBANValidationError.invalidLength))
+                    })
+
+                    expect { try checkLength(iban: MT_ibanUnderTest) }.to(throwError { (error: Error) in
+                        expect(error).to(matchError(IBANValidationError.invalidLength))
+                    })
+                    
                 })
 
-                it("should pass IBANs with correct lengths", closure: {
+                it("should reject IBANs that have more than 34 characters", closure: {
                     // DE = 22, BE = 16, MT = 31,
                     let DE_ibanUnderTest = "DE34567890123456789012"
                     let BE_ibanUnderTest = "BE34567890123456"
                     let MT_ibanUnderTest = "MT34567890123456789012345678901"
-                    expect(checkLength(iban: DE_ibanUnderTest)).to(beTrue())
-                    expect(checkLength(iban: BE_ibanUnderTest)).to(beTrue())
-                    expect(checkLength(iban: MT_ibanUnderTest)).to(beTrue())
+                    
+                    expect { try checkLength(iban: DE_ibanUnderTest) }.to(beTrue())
+                    expect { try checkLength(iban: BE_ibanUnderTest) }.to(beTrue())
+                    expect { try checkLength(iban: MT_ibanUnderTest) }.to(beTrue())
+                    
                 })
-
+                
             })
 
         }
