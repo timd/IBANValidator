@@ -15,8 +15,6 @@
 		57817B321FA72A81001F8675 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57817B311FA72A81001F8675 /* Nimble.framework */; };
 		57817B341FA72A87001F8675 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57817B331FA72A87001F8675 /* Quick.framework */; };
 		57817B361FA73F1D001F8675 /* IBANChecksumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57817B351FA73F1D001F8675 /* IBANChecksumTests.swift */; };
-		57817B381FA7591C001F8675 /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57817B371FA7591C001F8675 /* BigInt.framework */; };
-		57817B391FA75922001F8675 /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57817B371FA7591C001F8675 /* BigInt.framework */; };
 		57817B3B1FA75BF5001F8675 /* SMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57817B3A1FA75BF5001F8675 /* SMP.swift */; };
 		57817B3C1FA75CAD001F8675 /* SMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57817B3A1FA75BF5001F8675 /* SMP.swift */; };
 		57817B3E1FA761EC001F8675 /* CompleteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57817B3D1FA761EC001F8675 /* CompleteTests.swift */; };
@@ -65,7 +63,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57817B381FA7591C001F8675 /* BigInt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,7 +71,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				576AF2601FA61CE60017D758 /* IBANValidator.framework in Frameworks */,
-				57817B391FA75922001F8675 /* BigInt.framework in Frameworks */,
 				57817B321FA72A81001F8675 /* Nimble.framework in Frameworks */,
 				57817B341FA72A87001F8675 /* Quick.framework in Frameworks */,
 			);
