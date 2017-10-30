@@ -10,6 +10,10 @@
 		576AF2601FA61CE60017D758 /* IBANValidator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 576AF2561FA61CE60017D758 /* IBANValidator.framework */; };
 		576AF2651FA61CE60017D758 /* IBANValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576AF2641FA61CE60017D758 /* IBANValidatorTests.swift */; };
 		576AF2671FA61CE60017D758 /* IBANValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 576AF2591FA61CE60017D758 /* IBANValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		576AF2781FA61DB90017D758 /* IBANValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576AF2771FA61DB90017D758 /* IBANValidator.swift */; };
+		576AF2791FA61DB90017D758 /* IBANValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576AF2771FA61DB90017D758 /* IBANValidator.swift */; };
+		57817B321FA72A81001F8675 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57817B311FA72A81001F8675 /* Nimble.framework */; };
+		57817B341FA72A87001F8675 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57817B331FA72A87001F8675 /* Quick.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,6 +26,18 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		576AF27A1FA7293D0017D758 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		576AF2561FA61CE60017D758 /* IBANValidator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IBANValidator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		576AF2591FA61CE60017D758 /* IBANValidator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBANValidator.h; sourceTree = "<group>"; };
@@ -29,6 +45,9 @@
 		576AF25F1FA61CE60017D758 /* IBANValidatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IBANValidatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		576AF2641FA61CE60017D758 /* IBANValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBANValidatorTests.swift; sourceTree = "<group>"; };
 		576AF2661FA61CE60017D758 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		576AF2771FA61DB90017D758 /* IBANValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBANValidator.swift; sourceTree = "<group>"; };
+		57817B311FA72A81001F8675 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		57817B331FA72A87001F8675 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +63,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				576AF2601FA61CE60017D758 /* IBANValidator.framework in Frameworks */,
+				57817B321FA72A81001F8675 /* Nimble.framework in Frameworks */,
+				57817B341FA72A87001F8675 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +77,7 @@
 				576AF2581FA61CE60017D758 /* IBANValidator */,
 				576AF2631FA61CE60017D758 /* IBANValidatorTests */,
 				576AF2571FA61CE60017D758 /* Products */,
+				576AF2701FA61D820017D758 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +95,7 @@
 			children = (
 				576AF2591FA61CE60017D758 /* IBANValidator.h */,
 				576AF25A1FA61CE60017D758 /* Info.plist */,
+				576AF2771FA61DB90017D758 /* IBANValidator.swift */,
 			);
 			path = IBANValidator;
 			sourceTree = "<group>";
@@ -84,6 +107,15 @@
 				576AF2661FA61CE60017D758 /* Info.plist */,
 			);
 			path = IBANValidatorTests;
+			sourceTree = "<group>";
+		};
+		576AF2701FA61D820017D758 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				57817B331FA72A87001F8675 /* Quick.framework */,
+				57817B311FA72A81001F8675 /* Nimble.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +157,7 @@
 				576AF25B1FA61CE60017D758 /* Sources */,
 				576AF25C1FA61CE60017D758 /* Frameworks */,
 				576AF25D1FA61CE60017D758 /* Resources */,
+				576AF27A1FA7293D0017D758 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -148,6 +181,7 @@
 				TargetAttributes = {
 					576AF2551FA61CE60017D758 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 					576AF25E1FA61CE60017D758 = {
@@ -196,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				576AF2781FA61DB90017D758 /* IBANValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				576AF2791FA61DB90017D758 /* IBANValidator.swift in Sources */,
 				576AF2651FA61CE60017D758 /* IBANValidatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,6 +370,7 @@
 		576AF26B1FA61CE60017D758 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -341,12 +378,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = IBANValidator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.duckett.IBANValidator;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -355,6 +397,7 @@
 		576AF26C1FA61CE60017D758 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -362,6 +405,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = IBANValidator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -376,10 +423,15 @@
 		576AF26E1FA61CE60017D758 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XMUJNQ4J82;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = IBANValidatorTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/Carthage/Build/iOS";
 				PRODUCT_BUNDLE_IDENTIFIER = de.duckett.IBANValidatorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -390,10 +442,15 @@
 		576AF26F1FA61CE60017D758 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XMUJNQ4J82;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = IBANValidatorTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/Carthage/Build/iOS";
 				PRODUCT_BUNDLE_IDENTIFIER = de.duckett.IBANValidatorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
