@@ -7,7 +7,9 @@ Being a small Swift framework to check validity of IBAN codes. It's based on the
 
 1. Add `github "timd/IBANValidator"` to the Cartfile
 1. Run `carthage update`
-1. Add the framework to the Link Binary with Libraries build phase, and add to the Carthage Run Script build phase as per the Carthage documentation.
+1. Add the framework to the `Link Binary with Libraries` build phase, and add to the `Carthage Run Script` build phase as per the [Carthage documentation](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application).
+1. Er...
+1. That's it.
 
 *Cocoapods:*
 
