@@ -1,5 +1,5 @@
 # IBANValidator
-Being a small Swift framework to check validity of IBAN codes. It's based on the the ISO 13616:2007 standard, which defines a checksum process described (here)[https://en.wikipedia.org/wiki/International_Bank_Account_Number#Validating_the_IBAN].
+Being a small Swift framework to check validity of IBAN codes. It's based on the the ISO 13616:2007 standard, which defines a checksum process described [here](https://en.wikipedia.org/wiki/International_Bank_Account_Number#Validating_the_IBAN).
 
 ## Installation
 
@@ -52,7 +52,7 @@ public enum IBANValidationError: String, LocalizedError {
 }
 ```
 * `invalidChecksum` is returned if the checksum calculation fails. This indicates an invalid IBAN.
-* `invalidCountryCode` is returned if the country code does not appear on the list of supported countries (see the list at the top of `IBANValidator.swift` for the current list
+* `invalidCountryCode` is returned if the country code does not appear on the list of supported countries (see the list at the top of `IBANValidator.swift` for the current list)
 * `invalidLength` is returned if the provided IBAN is longer than 34 characters; or exceeds the length defined as the maximum for the country (these differ from country to country) 
 * `invalidCharacters` is returned if the provided IBAN contains non-alphanumeric characters. The IBAN standard doesn't support Emoji yet.
 
