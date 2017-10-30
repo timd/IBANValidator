@@ -2,8 +2,8 @@
 //  IBANValidator.h
 //  IBANValidator
 //
-//  Created by Tim Ducket on 29.10.17.
-//  Copyright © 2017 Tim Duckett. All rights reserved.
+//  Created by Tim Duckett on 29.10.17.
+//  Copyright © 2017 Tim Duckettt. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

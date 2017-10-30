@@ -2,8 +2,8 @@
 //  IBANModuloTests.swift
 //  IBANValidatorTests
 //
-//  Created by Tim Ducket on 30.10.17.
-//  Copyright © 2017 Tim Duckett. All rights reserved.
+//  Created by Tim Duckett on 30.10.17.
+//  Copyright © 2017 Tim Duckettt. All rights reserved.
 //
 
 import Quick
