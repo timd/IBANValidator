@@ -13,7 +13,7 @@ Being a small Swift framework to check validity of IBAN codes. It's based on the
 
 *Cocoapods:*
 
-Not yet.
+Not yet. Maybe one day.
 
 ## Usage
 
@@ -25,13 +25,15 @@ let validIBAN = "AL90208110080000001039531801"
 
 do {
     
+    // returns true for valid IBAN, false + error
+    // if there's a problem
     let _ = try IBANValidator(iban: validIBAN)
     
     // Validation was successful, carry on
     
 } catch let error as IBANValidationError {
     
-    // Handle error
+    // Something is wrong with the IBAN, so handle the error
     print(error)
     
 } catch {
@@ -64,8 +66,7 @@ As a convenience for populating things like picker lists, `IBANValidator` expose
 
 ## Acknowledgements
 
-This framework uses Marcel Kröker's [Swift-Big-Integer library](https://github.com/mkrd/Swift-Big-Integer).
-Sample IBAN numbers can be obtained [here](https://www.iban-bic.com/sample_accounts.html).
+This framework uses Marcel Kröker's [Swift-Big-Integer library](https://github.com/mkrd/Swift-Big-Integer), because calculating mod(97) of 34-digit integers makes my head hurt. Sample IBAN numbers for testing can be obtained [here](https://www.iban-bic.com/sample_accounts.html).
 
 ## Disclaimer
 
